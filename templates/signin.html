@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <style>
+        :root{
+            --ff-secondary: "Open Sans", sans-serif;
+            --clr-grey-1: hsl(209, 61%, 16%);
+            --clr-grey-5: hsl(210, 22%, 49%);
+            --clr-grey-10: hsl(210, 36%, 96%);
+            --clr-primary-5: #49a6e9;
+            --clr-primary-8: hsl(205, 86%, 81%);
+            --radius: 0.5rem;
+            --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s linear;
+        }
+        body {
+            font-family: var(--ff-secondary);
+            background: var(--clr-grey-10);
+            color: var(--clr-grey-1);
+            line-height: 1.5;
+            font-size: 0.875rem;
+          }
+          @media screen and (min-width: 800px) {
+            body {
+                font-size: 1rem;
+              }
+          }
+          .section-center {
+            width: 90vw;
+            margin: 0 auto;
+            max-width: 35rem;
+            margin-top: 8rem;
+          }
+          
+          @media screen and (min-width: 992px) {
+            .section-center {
+              width: 95vw;
+            }
+          }
+          .section-center {
+            background: var(--clr-white);
+            border-radius: var(--radius);
+            box-shadow: var(--light-shadow);
+            transition: var(--transition);
+            padding: 5rem;
+            
+          }
+          
+          .section-center:hover {
+                background-image:linear-gradient(lightgreen,lightyellow);
+          }
+          .todo {
+            padding: 0.25rem;
+            padding-left: 1rem;
+            background: var(--clr-grey-10);
+            border-radius: var(--radius);
+            border-color: transparent;
+            font-size: 1rem;
+            flex: 1 0 auto;
+            color: var(--clr-grey-5);
+            padding:10px;
+            margin:5px;
+          }
+          .todo:hover{
+            background-color: lightcyan;
+            border-color: none;
+          }
+          .submit-btn{
+            background-color:lawngreen;
+            border-color: transparent;
+            padding: 0.25rem;
+            text-transform: capitalize;
+            letter-spacing: 1px;
+            content: var(--clr-primary-5);
+            transition: var(--transition);
+            font-size: 0.85rem;
+            font-weight: 800;
+          }
+          .submit-btn:hover{
+            background: red;
+            border-radius: 3rem;
+            cursor: pointer;
+          }
+    </style>
+</head>
+<body>
+    <section class="section-center">
+    <table class='table'>
+        <form action="" method='post'>
+            {% csrf_token %}
+            <tr>
+                <td><label for="username">User Name</label></td>
+                <td>:</td>
+                <td><input type="text" name="username" id="username" placeholder='Enter Your User Name..' class='todo'></td>
+            </tr>
+            <tr>
+                <td><label for="password">Password</label></td>
+                <td>:</td>
+                <td><input type="password" name="password" id="password" placeholder='Enter Password.....'class='todo'></td>
+            </tr>
+            <tr align='end'>
+                <td colspan='3'>
+                    <button class='submit-btn'>Login</button>
+                </td>
+            </tr>
+        </form>
+    </table>
+</section>
+</body>
+</html>

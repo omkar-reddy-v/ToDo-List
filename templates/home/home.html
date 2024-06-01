@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+    :root{
+            --ff-secondary: "Open Sans", sans-serif;
+            --clr-grey-1: hsl(209, 61%, 16%);
+            --clr-grey-5: hsl(210, 22%, 49%);
+            --clr-grey-10: hsl(210, 36%, 96%);
+            --clr-primary-5: #49a6e9;
+            --clr-primary-8: hsl(205, 86%, 81%);
+            --radius: 0.5rem;
+            --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s linear;
+        }
+        body {
+            font-family: var(--ff-secondary);
+            background: var(--clr-grey-10);
+            color: var(--clr-grey-1);
+            line-height: 1.5;
+            font-size: 0.875rem;
+          }
+          @media screen and (min-width: 800px) {
+            body {
+                font-size: 1rem;
+              }
+          }
+          .flex{
+            width: 90vw;
+            margin: 0 auto;
+            max-width: 35rem;
+            margin-top: 3rem;
+          }
+          
+          @media screen and (min-width: 992px) {
+            .flex {
+              width: 95vw;
+            }
+          }
+          @media screen and (max-width: 770px) {
+            body .h1{
+                text-align: center;
+                position: relative;
+                width: 400px;
+                padding: 10px;
+                margin-left:170px;
+                border-radius: 4rem;
+            }
+            .flex {
+              width: 50vw;
+              display: flex;
+              flex-direction: column;
+              
+            }
+            .button{
+                margin-top: 30px;
+                margin-left: 120px;
+            }
+          }
+          @media screen and (max-width: 710px) {
+            body .h1{
+                text-align: center;
+                position: relative;
+                width: 400px;
+                padding: 10px;
+                margin-left:140px;
+                border-radius: 4rem;
+            }
+          }
+          @media screen and (max-width: 640px) {
+            body .h1{
+                text-align: center;
+                position: relative;
+                width: 400px;
+                padding: 10px;
+                margin-left:90px;
+                border-radius: 4rem;
+            }
+          }
+          @media screen and (max-width: 440px){
+            body .h1{
+                text-align: center;
+                position: relative;
+                width: 400px;
+                padding: 10px;
+                margin-left:0px;
+                border-radius: 4rem;
+            }
+          }
+          .flex {
+            display: flex;
+            justify-content: space-around;
+            background: var(--clr-white);
+            border-radius: var(--radius);
+            box-shadow: var(--light-shadow);
+            transition: var(--transition);
+            padding: 5rem;
+            
+            
+          }
+          .flex:hover {
+                background-image:linear-gradient(lightgreen,lightyellow);
+          }
+        .button:hover{
+            background: red;
+            border-radius: 3rem;
+            cursor: pointer;
+        }
+
+        .button{
+            background-color: lawngreen;
+            width: 30px;
+            height: 30px;
+            text-transform: capitalize;
+            letter-spacing: 1px;
+            content: var(--clr-primary-5);
+            transition: var(--transition);
+            font-size: 0.85rem;
+            font-weight: 800;
+            border: none;
+            border-radius: 2rem;
+            position: relative;
+            animation-name: button ;
+            animation-duration: 2s ;
+            animation-iteration-count: 1;
+            animation-delay: 1s;
+            animation-fill-mode: backwards;
+        }
+
+        @keyframes button {
+                0%{
+                    left: 0;
+                    top: 0;
+                    background-color: red;
+                }
+                25%{
+                    top: 0;
+                    left: 100px;
+                    background-color: blue;
+                }
+                50%{
+                    top: 30px;
+                    left: 100px;
+                    background-color: navy;
+                }
+                75%{
+                    top: 30px;
+                    left: 0px;
+                    background-color: yellow;
+                }
+                100%{
+                    left: 0px;
+                    top: 0px;
+                    background-color: violet;
+                }
+        }
+        .h1{
+            text-align: center;
+            position: relative;
+            width: 450px;
+            padding: 10px;
+            margin-left: 32%;
+            border-radius: 4rem;
+            animation-name: h1 ;
+            animation-duration: 2s ;
+            animation-iteration-count: infinite;
+            animation-delay: 1s;
+            animation-fill-mode: backwards;
+          }
+          @keyframes h1 {
+                0%{
+                    left: 0;
+                    top: 0;
+                    background-color: pink;
+                }
+                25%{
+                    top: 0;
+                    left: 0px;
+                    background-color: lightgreen;
+                }
+                50%{
+                    top: 30px;
+                    left: 0px;
+                    background-color: gainsboro;
+                }
+                75%{
+                    top: 30px;
+                    left: 0px;
+                    background-color: yellow;
+                }
+                100%{
+                    left: 0px;
+                    top: 0px;
+                    background-color: violet;
+                }
+            }
+
+    </style>
+</head>
+<body>
+    <h1 class="h1">Welcome To Your Todo List</h1>
+    <div class='flex'>
+
+        <div>
+            <a href="{% url "addtaskadd" %}"><button class="button">Add Tasks</button></a>
+        </div>
+        <div>
+            <a href="{% url "alltasks" %}"><button  class="button">AllTasks</button></a>
+        </div>
+        <div>
+            <a href="{% url "signup" %}"><button  class="button">SignUp</button></a>
+        </div>
+        <div>
+            <a href="{% url "signin" %}"><button  class="button">Login</button></a>
+        </div>
+
+    </div>
+</body>
+</html>

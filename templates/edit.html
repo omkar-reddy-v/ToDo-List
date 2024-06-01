@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*=============== Fonts ===============*/
+        @import url("https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400,700&display=swap");
+        
+        /*=============== Variables ===============*/
+        
+        :root {
+          /* dark shades of primary color*/
+          --clr-primary-1: hsl(205, 86%, 17%);
+          /* primary/main color */
+          --clr-primary-5: #49a6e9;
+          /* lighter shades of primary color */
+          --clr-primary-8: hsl(205, 86%, 81%);
+          /* darkest grey - used for headings */          
+          --clr-grey-1: hsl(209, 61%, 16%);
+          /* grey used for paragraphs */   
+          --clr-grey-5: hsl(210, 22%, 49%);
+          --clr-grey-10: hsl(210, 36%, 96%);
+          --clr-white: #fff;
+          --ff-primary: "Roboto", sans-serif;
+          --ff-secondary: "Open Sans", sans-serif;
+          --transition: all 0.3s linear;
+          --spacing: 0.25rem;
+          --radius: 0.5rem;
+          --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+          --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+
+        }
+        
+        /*=============== Global Styles ===============*/
+        
+        *,
+        ::after,
+        ::before {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+        
+        body {
+          font-family: var(--ff-secondary);
+          background: var(--clr-grey-10);
+          color: var(--clr-grey-1);
+          line-height: 1.5;
+          font-size: 0.875rem;
+        }
+        h3 {
+          letter-spacing: var(--spacing);
+          text-transform: capitalize;
+          line-height: 1.25;
+          margin-bottom: 0.75rem;
+          font-family: var(--ff-primary);
+        }
+        
+        h3 {
+          font-size: 1.25rem;
+          text-align:center;
+          padding:20px;
+        }
+        @media screen and (min-width: 800px) {
+          h3 {
+            font-size: 1.75rem;
+          }
+          body {
+            font-size: 1rem;
+          }
+          h3{
+            line-height: 1;
+          }
+        }
+        
+        /* section */
+        
+        .section-center {
+          width: 90vw;
+          margin: 0 auto;
+          max-width: 35rem;
+          margin-top: 8rem;
+        }
+        
+        @media screen and (min-width: 992px) {
+          .section-center {
+            width: 95vw;
+          }
+        }
+        
+        
+        /*=============== Todo List ===============*/
+        .section-center {
+          background: var(--clr-white);
+          border-radius: var(--radius);
+          box-shadow: var(--light-shadow);
+          transition: var(--transition);
+          padding: 2rem;
+        }
+        
+        .section-center:hover {
+          box-shadow: var(--dark-shadow);
+        }
+        
+        .todo-form h3 {
+          color: var(--clr-primary-1);
+          margin-bottom: 1.5rem;
+          text-align: center;
+        }
+        
+        .form-control {
+          display: flex;
+          justify-content: center;
+        }
+        input[type='text'],[type='date'],[type='time']{
+          width: 300px;
+        }
+        
+        .todo {
+          padding: 0.25rem;
+          padding-left: 1rem;
+          background: var(--clr-grey-10);
+          border-radius: var(--radius);
+          border-color: transparent;
+          font-size: 1rem;
+          flex: 1 0 auto;
+          color: var(--clr-grey-5);
+          padding:10px;
+          margin:5px;
+        }
+        .todo:hover{
+          background-color: lightcyan;
+          border-color: none;
+        }
+        
+        .todo::placeholder {
+          font-family: var(--ff-secondary);
+          color: var(--clr-grey-5);
+        }
+        .submit-btn{
+          background: var(--clr-primary-8);
+          border-color: transparent;
+          padding: 0.25rem;
+          text-transform: capitalize;
+          letter-spacing: 2px;
+          content: var(--clr-primary-5);
+          transition: var(--transition);
+          font-size: 0.85rem;
+          font-weight: 800;
+        }
+        .submit-btn:hover {
+          background: var(--clr-primary-5);
+          color: var(--clr-white);
+          border-radius: 3rem;
+          cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <section class="section-center">
+      <table  class="form-control">
+        <form class="todo-form" method='post'>
+        {% csrf_token %}
+        <h3>Todo List</h3>
+        <tr>
+          <td>
+              <label for="task">Enter Your Daily Task</label>
+          </td>
+          <td>:</td>
+          <td>
+              <input type="text" name="task" id="task" class="todo" value='{{tasks.task}}' >
+          </td>
+      </tr>
+      <tr>
+          <td><label for="date">Date</label></td>
+          <td>:</td>
+          <td><input type="date" name="date" id="date" class="todo" value='{{tasks.date|date:'Y-m-d'}}' ></td>
+      </tr>
+      <tr>
+          <td>
+              <label for="time"> Complite The Task</label>
+          </td>
+          <td>:</td>
+          <td><input type="time" name="time" id="time" class="todo" value='{{tasks.time|time:'H:i:s'}}'></td>
+      </tr>
+      
+      <tr align="end">
+          <td colspan="3">
+              <button class="submit-btn">Submit</button>
+          </td>
+      </tr>
+      <tr align='center'>
+          <td colspan='3'>
+              {% if messages %}
+              {% for message in messages %}
+              {% if message.tag == SUCCESS %}
+              <span style='color:green;'>Your Eddit Is Successfuly Done</span>
+              {% endif %}
+              {% endfor %}
+              {% endif %} 
+          </td>
+      </tr>
+      </table>
+    </section>
+  </body>
+</html>
